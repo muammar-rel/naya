@@ -27,13 +27,13 @@
       }
 
       .logo {
-        padding: 0;
+        padding: 0 0 0 5rem;
         display: flex;
         align-items: center;
       }
 
       .logo img {
-        height: 50px;
+        height: 60px;
         width: auto;
         object-fit: contain;
         transition: transform 0.3s ease;
@@ -756,9 +756,7 @@
               <button class="am-pm-tab active" data-time="morning">
                 AM Routine
               </button>
-              <button class="am-pm-tab" data-time="night">
-                PM Routine
-              </button>
+              <button class="am-pm-tab" data-time="night">PM Routine</button>
             </div>
 
             <div class="routine-content active" data-time="morning">
@@ -987,7 +985,10 @@
             </div>
 
             <!-- Brightening Night Routine -->
-            <div class="night-routine-content active" data-routine="brightening">
+            <div
+              class="night-routine-content active"
+              data-routine="brightening"
+            >
               <div class="night-routine-header">
                 <div class="night-routine-icon">
                   <img src="img/brightness-icon.png" alt="Brightening" />
@@ -1352,66 +1353,74 @@
         </div>
       </div>
     </section>
-  <script>
-    // Fungsi untuk menangani tab Jenis Kulit
-    document.querySelectorAll('.skin-type-tab').forEach(button => {
-      button.addEventListener('click', () => {
-        // Menghapus kelas active dari semua tab
-        document.querySelectorAll('.skin-type-tab').forEach(tab => {
-          tab.classList.remove('active');
-        });
-        // Menghapus kelas active dari semua konten
-        document.querySelectorAll('.skin-type-content').forEach(content => {
-          content.classList.remove('active');
-        });
-        
-        // Menambahkan kelas active ke tab yang diklik
-        button.classList.add('active');
-        // Menampilkan konten yang sesuai
-        const targetId = button.getAttribute('data-target');
-        document.getElementById(targetId).classList.add('active');
-      });
-    });
+    <script>
+      // Fungsi untuk menangani tab Jenis Kulit
+      document.querySelectorAll(".skin-type-tab").forEach((button) => {
+        button.addEventListener("click", () => {
+          // Menghapus kelas active dari semua tab
+          document.querySelectorAll(".skin-type-tab").forEach((tab) => {
+            tab.classList.remove("active");
+          });
+          // Menghapus kelas active dari semua konten
+          document.querySelectorAll(".skin-type-content").forEach((content) => {
+            content.classList.remove("active");
+          });
 
-    // Fungsi untuk menangani tab AM/PM Skincare
-    document.querySelectorAll('.am-pm-tab').forEach(button => {
-      button.addEventListener('click', () => {
-        const targetTime = button.getAttribute('data-time');
-        
-        // Menghapus kelas active dari semua tab
-        document.querySelectorAll('.am-pm-tab').forEach(tab => {
-          tab.classList.remove('active');
+          // Menambahkan kelas active ke tab yang diklik
+          button.classList.add("active");
+          // Menampilkan konten yang sesuai
+          const targetId = button.getAttribute("data-target");
+          document.getElementById(targetId).classList.add("active");
         });
-        // Menghapus kelas active dari semua konten
-        document.querySelectorAll('.routine-content').forEach(content => {
-          content.classList.remove('active');
-        });
-        
-        // Menambahkan kelas active
-        button.classList.add('active');
-        document.querySelector(`.routine-content[data-time="${targetTime}"]`).classList.add('active');
       });
-    });
 
-    // Fungsi untuk menangani Night Treatment Routines
-    document.querySelectorAll('.routine-tab').forEach(button => {
-      button.addEventListener('click', () => {
-        const targetRoutine = button.getAttribute('data-routine');
-        
-        // Menghapus kelas active dari semua tab
-        document.querySelectorAll('.routine-tab').forEach(tab => {
-          tab.classList.remove('active');
+      // Fungsi untuk menangani tab AM/PM Skincare
+      document.querySelectorAll(".am-pm-tab").forEach((button) => {
+        button.addEventListener("click", () => {
+          const targetTime = button.getAttribute("data-time");
+
+          // Menghapus kelas active dari semua tab
+          document.querySelectorAll(".am-pm-tab").forEach((tab) => {
+            tab.classList.remove("active");
+          });
+          // Menghapus kelas active dari semua konten
+          document.querySelectorAll(".routine-content").forEach((content) => {
+            content.classList.remove("active");
+          });
+
+          // Menambahkan kelas active
+          button.classList.add("active");
+          document
+            .querySelector(`.routine-content[data-time="${targetTime}"]`)
+            .classList.add("active");
         });
-        // Menghapus kelas active dari semua konten
-        document.querySelectorAll('.night-routine-content').forEach(content => {
-          content.classList.remove('active');
-        });
-        
-        // Menambahkan kelas active
-        button.classList.add('active');
-        document.querySelector(`.night-routine-content[data-routine="${targetRoutine}"]`).classList.add('active');
       });
-    });
-  </script>
+
+      // Fungsi untuk menangani Night Treatment Routines
+      document.querySelectorAll(".routine-tab").forEach((button) => {
+        button.addEventListener("click", () => {
+          const targetRoutine = button.getAttribute("data-routine");
+
+          // Menghapus kelas active dari semua tab
+          document.querySelectorAll(".routine-tab").forEach((tab) => {
+            tab.classList.remove("active");
+          });
+          // Menghapus kelas active dari semua konten
+          document
+            .querySelectorAll(".night-routine-content")
+            .forEach((content) => {
+              content.classList.remove("active");
+            });
+
+          // Menambahkan kelas active
+          button.classList.add("active");
+          document
+            .querySelector(
+              `.night-routine-content[data-routine="${targetRoutine}"]`
+            )
+            .classList.add("active");
+        });
+      });
+    </script>
   </body>
 </html>

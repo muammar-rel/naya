@@ -753,15 +753,15 @@
             <h3>Basic Skincare Untuk Semua Jenis Kulit</h3>
 
             <div class="am-pm-tabs">
-              <button class="am-pm-tab active" data-target="am-routine">
+              <button class="am-pm-tab active" data-time="morning">
                 AM Routine
               </button>
-              <button class="am-pm-tab" data-target="pm-routine">
+              <button class="am-pm-tab" data-time="night">
                 PM Routine
               </button>
             </div>
 
-            <div class="routine-content active" id="am-routine">
+            <div class="routine-content active" data-time="morning">
               <div class="routine-grid">
                 <!-- Step 1 -->
                 <div class="routine-card">
@@ -837,7 +837,7 @@
               </div>
             </div>
 
-            <div class="routine-content" id="pm-routine">
+            <div class="routine-content" data-time="night">
               <div class="routine-grid">
                 <!-- Step 1 -->
                 <div class="routine-card">
@@ -957,13 +957,13 @@
             <h3>Spesial Night Treatment Routines</h3>
 
             <div class="routines-tabs">
-              <button class="routine-tab active" data-target="brightening">
+              <button class="routine-tab active" data-routine="brightening">
                 Malam Pencerah
               </button>
-              <button class="routine-tab" data-target="retinol">
+              <button class="routine-tab" data-routine="retinol">
                 Malam Retinol
               </button>
-              <button class="routine-tab" data-target="hydrating">
+              <button class="routine-tab" data-routine="hydrating">
                 Malam Hydrating
               </button>
               <button class="routine-tab" data-target="moisturizing">
@@ -987,7 +987,7 @@
             </div>
 
             <!-- Brightening Night Routine -->
-            <div class="night-routine-content active" id="brightening">
+            <div class="night-routine-content active" data-routine="brightening">
               <div class="night-routine-header">
                 <div class="night-routine-icon">
                   <img src="img/brightness-icon.png" alt="Brightening" />
@@ -1130,7 +1130,7 @@
             </div>
 
             <!-- Retinol Night Routine -->
-            <div class="night-routine-content" id="retinol">
+            <div class="night-routine-content" data-routine="retinol">
               <div class="night-routine-header">
                 <div class="night-routine-icon">
                   <img src="img/retinol-icon.png" alt="Retinol" />
@@ -1270,7 +1270,7 @@
             </div>
 
             <!-- Hydrating Night Routine -->
-            <div class="night-routine-content" id="hydrating">
+            <div class="night-routine-content" data-routine="hydrating">
               <div class="night-routine-header">
                 <div class="night-routine-icon">
                   <img src="img/hydrating-icon.png" alt="Hydrating" />
@@ -1352,5 +1352,66 @@
         </div>
       </div>
     </section>
+  <script>
+    // Fungsi untuk menangani tab Jenis Kulit
+    document.querySelectorAll('.skin-type-tab').forEach(button => {
+      button.addEventListener('click', () => {
+        // Menghapus kelas active dari semua tab
+        document.querySelectorAll('.skin-type-tab').forEach(tab => {
+          tab.classList.remove('active');
+        });
+        // Menghapus kelas active dari semua konten
+        document.querySelectorAll('.skin-type-content').forEach(content => {
+          content.classList.remove('active');
+        });
+        
+        // Menambahkan kelas active ke tab yang diklik
+        button.classList.add('active');
+        // Menampilkan konten yang sesuai
+        const targetId = button.getAttribute('data-target');
+        document.getElementById(targetId).classList.add('active');
+      });
+    });
+
+    // Fungsi untuk menangani tab AM/PM Skincare
+    document.querySelectorAll('.am-pm-tab').forEach(button => {
+      button.addEventListener('click', () => {
+        const targetTime = button.getAttribute('data-time');
+        
+        // Menghapus kelas active dari semua tab
+        document.querySelectorAll('.am-pm-tab').forEach(tab => {
+          tab.classList.remove('active');
+        });
+        // Menghapus kelas active dari semua konten
+        document.querySelectorAll('.routine-content').forEach(content => {
+          content.classList.remove('active');
+        });
+        
+        // Menambahkan kelas active
+        button.classList.add('active');
+        document.querySelector(`.routine-content[data-time="${targetTime}"]`).classList.add('active');
+      });
+    });
+
+    // Fungsi untuk menangani Night Treatment Routines
+    document.querySelectorAll('.routine-tab').forEach(button => {
+      button.addEventListener('click', () => {
+        const targetRoutine = button.getAttribute('data-routine');
+        
+        // Menghapus kelas active dari semua tab
+        document.querySelectorAll('.routine-tab').forEach(tab => {
+          tab.classList.remove('active');
+        });
+        // Menghapus kelas active dari semua konten
+        document.querySelectorAll('.night-routine-content').forEach(content => {
+          content.classList.remove('active');
+        });
+        
+        // Menambahkan kelas active
+        button.classList.add('active');
+        document.querySelector(`.night-routine-content[data-routine="${targetRoutine}"]`).classList.add('active');
+      });
+    });
+  </script>
   </body>
 </html>
